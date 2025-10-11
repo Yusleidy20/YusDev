@@ -78,6 +78,28 @@
   cursor: pointer;
   color: #333333;
 }
+.navbar-social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-link {
+  color: #333333;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #ff7eb9; /* Rosa del logo al pasar cursor */
+}
+
+/* En móviles puedes hacer que los iconos se acomoden dentro del menú si quieres */
+@media (max-width: 768px) {
+  .navbar-social {
+    display: none; /* Opcional: los puedes poner dentro del menú desplegable */
+  }
+}
+
 
 /* Responsivo */
 @media (max-width: 768px) {

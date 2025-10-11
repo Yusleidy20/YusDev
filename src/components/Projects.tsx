@@ -1,8 +1,8 @@
 import React from "react";
 import "./Projects.css";
-import proyecto1 from "../assets/proyecto1.png"; // tu imagen de proyecto
-import proyecto2 from "../assets/proyecto2.png";
-import proyecto3 from "../assets/proyecto3.png";
+import proyecto1 from "../assets/img/proyecto1.jpeg"; // tu imagen de proyecto
+import proyecto2 from "../assets/img/proyecto1.jpeg";
+import proyecto3 from "../assets/img/proyecto1.jpeg";
 
 const Projects: React.FC = () => {
   const proyectos = [
