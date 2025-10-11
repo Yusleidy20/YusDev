@@ -1,0 +1,106 @@
+/* Importar tipografía Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Navbar principal */
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff; /* fondo blanco */
+  color: #333333;            /* texto gris oscuro */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #e5e7eb; /* línea sutil */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Contenedor interno */
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+/* Logo (ya rosa) */
+.navbar-logo img {
+  height: 80px;
+  width: auto;
+}
+
+/* Menú principal */
+.navbar-menu {
+  display: flex;
+  gap: 32px; /* espacio uniforme */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0; /* para dar más “respiro” */
+  transition: color 0.3s ease;
+}
+
+/* Efecto minimalista tipo underline en hover */
+.navbar-menu li::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #ff7eb9; /* rosa suave */
+  transition: width 0.3s ease;
+}
+
+.navbar-menu li:hover::after {
+  width: 100%;
+}
+
+.navbar-menu li:hover {
+  color: #ff7eb9; /* opcional, resalta texto */
+}
+
+/* Botón hamburguesa para móviles */
+.navbar-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333333;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .navbar-menu {
+    position: absolute;
+    top: 64px;
+    right: 0;
+    background-color: #ffffff;
+    flex-direction: column;
+    width: 200px;
+    padding: 16px;
+    display: none;
+    border-left: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 0;
+    gap: 16px;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+  }
+
+  .navbar-button {
+    display: block;
+  }
+}
