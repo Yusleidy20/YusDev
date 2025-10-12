@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
             ¡Hola! Soy <span className="highlight">Yus</span>
           </h1>
           <p className="hero-subtitle">
-            Desarrolladora web que crea experiencias limpias, funcionales y modernas.
+            Desarrolladora FullStack que crea experiencias limpias, funcionales y modernas.
           </p>
           <p className="hero-subtitle">
             Me apasiona construir proyectos que resuelven problemas y dejan huella.

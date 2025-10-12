@@ -1,23 +1,54 @@
 import React, { useState } from "react";
 import "./Contact.css";
+import emailjs from "@emailjs/browser";
+import Modal from "../components/Modal";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`Gracias por tu mensaje, ${formData.name}!`);
-    setFormData({ name: "", email: "", message: "" });
-    // Aquí podrías integrar un servicio real como EmailJS o backend propio
+
+    const serviceID = "service_ppqzchb";
+    const templateID = "template_ti5sfl7";
+    const publicKey = "QcKd_DtnT5e7cBxV9"; // tu Public Key (no el private key)
+
+    // 🔹 Los datos que se enviarán al template
+    const templateParams = {
+      name: formData.name || "Sin nombre",
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      setModalMessage(`✅ Tu mensaje fue enviado correctamente, ${formData.name || "gracias"}.`);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error al enviar mensaje:", error);
+      setModalMessage("❌ Error al enviar el mensaje. Intenta de nuevo más tarde.");
+    }
   };
+
+  const closeModal = () => setModalMessage(null);
 
   return (
     <section className="contact" id="contacto">
@@ -46,6 +77,8 @@ const Contact: React.FC = () => {
           Enviar mensaje
         </button>
       </form>
+
+      {modalMessage && <Modal message={modalMessage} onClose={closeModal} />}
     </section>
   );
 };
