@@ -1,21 +1,18 @@
-/* Importar tipografía Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
-/* Navbar principal */
 .navbar {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff; /* fondo blanco */
-  color: #333333;            /* texto gris oscuro */
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #333333;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid #e5e7eb; /* línea sutil */
+  border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Contenedor interno */
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -26,58 +23,42 @@
   height: 64px;
 }
 
-/* Logo (ya rosa) */
-.navbar-logo img {
-  height: 80px;
-  width: auto;
-}
-
-/* Menú principal */
 .navbar-menu {
   display: flex;
-  gap: 32px; /* espacio uniforme */
+  gap: 32px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.navbar-menu li {
-  cursor: pointer;
+.navbar-menu li a {
+  text-decoration: none;
+  color: #333333;
   font-weight: 500;
   position: relative;
-  padding: 4px 0; /* para dar más “respiro” */
+  padding: 4px 0;
   transition: color 0.3s ease;
 }
 
-/* Efecto minimalista tipo underline en hover */
-.navbar-menu li::after {
-  content: '';
+.navbar-menu li a::after {
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
   left: 0;
   bottom: 0;
-  background-color: #ff7eb9; /* rosa suave */
+  background-color: #ff7eb9;
   transition: width 0.3s ease;
 }
 
-.navbar-menu li:hover::after {
+.navbar-menu li a:hover::after {
   width: 100%;
 }
 
-.navbar-menu li:hover {
-  color: #ff7eb9; /* opcional, resalta texto */
+.navbar-menu li a:hover {
+  color: #ff7eb9;
 }
 
-/* Botón hamburguesa para móviles */
-.navbar-button {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #333333;
-}
 .navbar-social {
   display: flex;
   gap: 16px;
@@ -90,18 +71,18 @@
 }
 
 .social-link:hover {
-  color: #ff7eb9; /* Rosa del logo al pasar cursor */
+  color: #ff7eb9;
 }
 
-/* En móviles puedes hacer que los iconos se acomoden dentro del menú si quieres */
-@media (max-width: 768px) {
-  .navbar-social {
-    display: none; /* Opcional: los puedes poner dentro del menú desplegable */
-  }
+.navbar-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333333;
 }
 
-
-/* Responsivo */
 @media (max-width: 768px) {
   .navbar-menu {
     position: absolute;
@@ -125,4 +106,28 @@
   .navbar-button {
     display: block;
   }
+
+  .navbar-social {
+    display: none;
+  }
+}
+/* BOTÓN DEL LOGO (quitar apariencia nativa del <button>) */
+.navbar-logo {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo:focus {
+  outline: none;
+}
+
+.navbar-logo img {
+  height: 80px;
+  width: auto;
+  display: block;
 }
