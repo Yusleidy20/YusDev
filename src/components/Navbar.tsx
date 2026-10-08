@@ -1,86 +1,41 @@
 import React, { useState } from "react";
-import "./Navbar.css";
-import logo from "../assets/logo.png";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FiMenu, FiX } from "react-icons/fi";
+
+const navigation = [
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#planes", label: "Planes" },
+  { href: "#proyectos", label: "Proyectos" },
+];
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
-
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        {/* LOGO — ahora accesible */}
+    <header className="site-header">
+      <nav className="navbar" aria-label="Navegación principal">
+        <a className="navbar-brand" href="#inicio" onClick={() => setMenuOpen(false)} aria-label="YusDev, ir al inicio">
+          YusDev<span>.</span>
+        </a>
         <button
-          className="navbar-logo"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Ir al inicio"
+          className="navbar-toggle"
+          type="button"
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
         >
-          <img src={logo} alt="YusDev Logo" className="logo-img" />
+          {menuOpen ? <FiX /> : <FiMenu />}
         </button>
-
-        {/* MENÚ PRINCIPAL */}
-        <ul className={`navbar-menu ${menuOpen ? "active" : ""}`}>
-          <li>
-            <a href="#home" onClick={handleLinkClick}>
-              Inicio
-            </a>
-          </li>
-          <li>
-            <a href="#about" onClick={handleLinkClick}>
-              Sobre mí
-            </a>
-          </li>
-          <li>
-            <a href="#projects" onClick={handleLinkClick}>
-              Proyectos
-            </a>
-          </li>
-          <li>
-            <a href="#skills" onClick={handleLinkClick}>
-              Habilidades
-            </a>
-          </li>
-          <li>
-            <a href="#contact" onClick={handleLinkClick}>
-              Contacto
-            </a>
-          </li>
-        </ul>
-
-        {/* ICONOS REDES */}
-        <div className="navbar-social">
-          <a
-            href="https://www.linkedin.com/in/yusleidy-gamboa-914299196/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link"
-          >
-            <FaLinkedin size={20} />
-          </a>
-          <a
-            href="https://github.com/Yusleidy20"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link"
-          >
-            <FaGithub size={20} />
-          </a>
+        <div className={`navbar-links${menuOpen ? " is-open" : ""}`} id="main-navigation">
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+          ))}
+          <a className="navbar-cta" href="#contacto" onClick={() => setMenuOpen(false)}>Hablemos <span>↗</span></a>
         </div>
-
-        {/* BOTÓN HAMBURGUESA */}
-        <button
-          className="navbar-button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir o cerrar menú"
-        >
-          ☰
-        </button>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
