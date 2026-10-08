@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-html {
-  scroll-behavior: smooth;
+#root {
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 3px solid #e9a75b;
+  outline-offset: 3px;
 }
